@@ -1,5 +1,6 @@
 import { IGif } from "@giphy/js-types";
 import { GifGrid } from "./components/gif-grid";
+import { FaSearch } from "react-icons/fa";
 
 type Props = {
   inputState: string;
@@ -17,12 +18,12 @@ export const SearchPage = ({
 }: Props) => {
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex justify-between">
+      <div className="flex flex-col justify-between gap-2 sm:flex-row sm:gap-0">
         <h2 className="text-2xl">Search{searchTerm && `: ${searchTerm}`}</h2>
         <div className="flex gap-2">
           <input
             type="search"
-            className="px-2 text-black"
+            className="w-full px-2 text-black sm:w-auto"
             value={inputState}
             onChange={(e) => {
               setInputState(e.target.value);
@@ -32,10 +33,11 @@ export const SearchPage = ({
             }}
           />
           <button
-            className="rounded bg-blue-500 px-2 text-white"
+            className="flex h-8 items-center gap-1 rounded bg-blue-500 px-2 text-white"
             onClick={() => setSearchTerm(inputState)}
           >
-            Search
+            <FaSearch />
+            <span className="hidden sm:block">Search</span>
           </button>
         </div>
       </div>

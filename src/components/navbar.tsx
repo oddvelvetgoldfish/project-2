@@ -6,12 +6,12 @@ interface Props {
 }
 export const Navbar = ({ tab, setTab }: Props) => {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex flex-col items-center justify-between sm:flex-row">
       <div className="text-5xl">
         <strong>GIPHY</strong> Search API
       </div>
       <nav>
-        <ul className="flex items-center gap-10">
+        <ul className="flex flex-col items-center gap-3 pt-6 sm:flex-row sm:gap-10 sm:pt-0">
           <li className={cn(tab === "trending" && "font-black")}>
             <button onClick={() => setTab("trending")}>Trending</button>
           </li>
