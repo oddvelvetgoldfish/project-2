@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
-import { cn, trendingUrl } from "./constants";
+import { searchBaseUrl, trendingUrl } from "./constants";
 import { IGif } from "@giphy/js-types";
 import { TrendingPage } from "./trending-page";
+import { Navbar } from "./components/navbar";
+import { SearchPage } from "./search-page";
 
 export const Start = () => {
-  const [gifs, setGifs] = useState<IGif[]>([]);
   const [tab, setTab] = useState("trending");
+
+  const [gifs, setGifs] = useState<IGif[]>([]);
+  const [searchGifs, setSearchGifs] = useState<IGif[]>([]);
+
+  const [inputState, setInputState] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const url = trendingUrl;
@@ -22,27 +29,37 @@ export const Start = () => {
       });
   }, []);
 
+  useEffect(() => {
+    if (searchTerm === "") return setSearchGifs([]);
+    const searchUrl = `${searchBaseUrl}${searchTerm}`;
+
+    const url = searchUrl;
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.meta.status !== 200) alert(json.meta.msg);
+        setSearchGifs(json.data);
+      })
+      .catch((err) => {
+        // offline, or some other error
+        alert(err);
+        setSearchGifs([]);
+      });
+  }, [searchTerm]);
+
   return (
     <div className="flex h-full w-full flex-col gap-8 overflow-auto bg-background p-10">
-      <div className="flex items-center justify-between">
-        <div className="text-5xl">
-          <strong>GIPHY</strong> Search API
-        </div>
-        <nav>
-          <ul className="flex items-center gap-10">
-            <li className={cn(tab === "trending" && "font-black")}>
-              <button onClick={() => setTab("trending")}>Trending</button>
-            </li>
-            <li className={cn(tab === "search" && "font-black")}>
-              <button onClick={() => setTab("search")}>Search</button>
-            </li>
-            <li className={cn(tab === "about" && "font-black")}>
-              <button onClick={() => setTab("about")}>About</button>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <TrendingPage gifs={gifs} />
+      <Navbar tab={tab} setTab={setTab} />
+      {tab === "trending" && <TrendingPage gifs={gifs} />}
+      {tab === "search" && (
+        <SearchPage
+          inputState={inputState}
+          setInputState={setInputState}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          gifs={searchGifs}
+        />
+      )}
     </div>
   );
 };
