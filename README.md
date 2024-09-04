@@ -1,50 +1,15 @@
-# React + TypeScript + Vite
+# Project 2: GIPHY API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Name: Sara Gharagozlou
 
-Currently, two official plugins are available:
+Overview: This project uses the GIPHY API to show trending gifs in a masonry grid on the home page, allows the user to type in a search term to search GIPHY for gifs in the search page, and shows a basic about page to provide a third menu option.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Details: Use the top navigation menu to switch between trending, search and about tabs. Type in the search bar and press enter or click "search" to search for gifs.
 
-## Expanding the ESLint configuration
+Technologies used: HTML, CSS, JavaScript, Vite, TailwindCSS
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Ideas for future improvement:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Show trending search terms to make searching easier
+- Actually make an informative About page
+- Allow users to see metadata for gifs
