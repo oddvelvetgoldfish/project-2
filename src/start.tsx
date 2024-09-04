@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { trendingUrl } from "./constants";
+import { cn, trendingUrl } from "./constants";
 import { IGif } from "@giphy/js-types";
-import { GifGrid } from "./components/gif-grid";
+import { TrendingPage } from "./trending-page";
 
 export const Start = () => {
   const [gifs, setGifs] = useState<IGif[]>([]);
+  const [tab, setTab] = useState("trending");
 
   useEffect(() => {
     const url = trendingUrl;
@@ -27,16 +28,21 @@ export const Start = () => {
         <div className="text-5xl">
           <strong>GIPHY</strong> Search API
         </div>
-        <nav className="flex items-center gap-10">
-          <span>Trending</span>
-          <span>Search</span>
-          <span>About</span>
+        <nav>
+          <ul className="flex items-center gap-10">
+            <li className={cn(tab === "trending" && "font-black")}>
+              <button onClick={() => setTab("trending")}>Trending</button>
+            </li>
+            <li className={cn(tab === "search" && "font-black")}>
+              <button onClick={() => setTab("search")}>Search</button>
+            </li>
+            <li className={cn(tab === "about" && "font-black")}>
+              <button onClick={() => setTab("about")}>About</button>
+            </li>
+          </ul>
         </nav>
       </div>
-      <div className="flex flex-col gap-6">
-        <h2 className="text-2xl">Trending GIFs</h2>
-        <GifGrid gifs={gifs} />
-      </div>
+      <TrendingPage gifs={gifs} />
     </div>
   );
 };
