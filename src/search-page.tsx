@@ -31,6 +31,11 @@ export const SearchPage = ({
                 setSearchTerm("");
               }
             }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setSearchTerm(inputState);
+              }
+            }}
           />
           <button
             className="flex h-8 items-center gap-1 rounded bg-blue-500 px-2 text-white"
