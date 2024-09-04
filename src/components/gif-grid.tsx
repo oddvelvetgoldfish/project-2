@@ -1,4 +1,3 @@
-import React from "react";
 import Masonry from "react-masonry-css";
 import { GifCard } from "./gif-card";
 import { IGif } from "@giphy/js-types";

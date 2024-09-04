@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { searchBaseUrl, trendingUrl } from "./constants";
 import { IGif } from "@giphy/js-types";
-import { TrendingPage } from "./trending-page";
+import { TrendingPage } from "./pages/trending-page";
 import { Navbar } from "./components/navbar";
-import { SearchPage } from "./search-page";
-import { AboutPage } from "./about-page";
+import { SearchPage } from "./pages/search-page";
+import { AboutPage } from "./pages/about-page";
 
 export const Start = () => {
   const [tab, setTab] = useState("trending");

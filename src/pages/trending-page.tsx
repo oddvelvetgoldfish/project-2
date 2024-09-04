@@ -1,5 +1,5 @@
 import { IGif } from "@giphy/js-types";
-import { GifGrid } from "./components/gif-grid";
+import { GifGrid } from "../components/gif-grid";
 
 interface Props {
   gifs: IGif[];
