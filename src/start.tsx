@@ -1,19 +1,10 @@
 import { useEffect, useState } from "react";
-import { GifCard } from "./components/gif-card";
 import { trendingUrl } from "./constants";
-import Masonry from "react-masonry-css";
 import { IGif } from "@giphy/js-types";
+import { GifGrid } from "./components/gif-grid";
 
 export const Start = () => {
   const [gifs, setGifs] = useState<IGif[]>([]);
-
-  // Define breakpoint columns for Masonry layout
-  const breakpointColumnsObj = {
-    default: 4,
-    1300: 3,
-    900: 2,
-    500: 1,
-  };
 
   useEffect(() => {
     const url = trendingUrl;
@@ -44,15 +35,7 @@ export const Start = () => {
       </div>
       <div className="flex flex-col gap-6">
         <h2 className="text-2xl">Trending GIFs</h2>
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className="flex w-full"
-          columnClassName="mx-1"
-        >
-          {gifs.map((gif) => (
-            <GifCard key={gif.id} gif={gif} />
-          ))}
-        </Masonry>
+        <GifGrid gifs={gifs} />
       </div>
     </div>
   );
