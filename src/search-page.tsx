@@ -18,7 +18,7 @@ export const SearchPage = ({
   return (
     <div className="flex flex-col gap-2">
       <div className="flex justify-between">
-        <h2 className="text-2xl">Search: {searchTerm}</h2>
+        <h2 className="text-2xl">Search{searchTerm && `: ${searchTerm}`}</h2>
         <div className="flex gap-2">
           <input
             type="search"

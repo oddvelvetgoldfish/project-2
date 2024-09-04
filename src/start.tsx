@@ -4,6 +4,7 @@ import { IGif } from "@giphy/js-types";
 import { TrendingPage } from "./trending-page";
 import { Navbar } from "./components/navbar";
 import { SearchPage } from "./search-page";
+import { AboutPage } from "./about-page";
 
 export const Start = () => {
   const [tab, setTab] = useState("trending");
@@ -60,6 +61,7 @@ export const Start = () => {
           gifs={searchGifs}
         />
       )}
+      {tab === "about" && <AboutPage />}
     </div>
   );
 };
